@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AppSide from "./AppSide";
 import AppCon from "./AppListPage";
-import $ from "jquery";
 import { isEqual } from "lodash";
 import { GetRequest } from "../common/util";
 import styled from "styled-components";
@@ -219,22 +218,9 @@ class AppLib extends React.Component {
     };
   }
   componentDidMount() {
-    $("html").addClass("appListPage");
-    $(".appListPage").css({
-      color: "#333",
-      "font-size": "13px !important",
-      margin: 0,
-      padding: "0px",
-      "background-attachment": "fixed",
-      "-webkit-text-size-adjust": "none",
-      width: "100%",
-      height: "100%",
-      "overflow-x": "hidden",
-      "font-family": `"Helvetica Neue", Helvetica, Arial, "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important`,
-      "line-height": 1.5,
-    });
-
+    var classVal = document.documentElement.getAttribute("class") || "";
+    classVal = classVal.concat(" appListPage");
+    document.documentElement.setAttribute("class", classVal);
     const { libraryId = "", categoryId = "", projectId = "" } = GetRequest();
     this.setState({
       libraryId,
@@ -244,7 +230,9 @@ class AppLib extends React.Component {
   }
 
   componentWillUnmount() {
-    $("html").removeClass("appListPage");
+    var classVal = document.documentElement.getAttribute("class");
+    classVal = classVal.replace("appListPage", "");
+    document.documentElement.setAttribute("class", classVal);
   }
 
   componentWillReceiveProps(nextProps) {

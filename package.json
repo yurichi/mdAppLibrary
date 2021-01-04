@@ -9,7 +9,6 @@
     "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
-    "jquery": "^3.5.1",
     "react": "^15.5.4 || ^16.0.0 || ^17.0.0",
     "react-dom": "^15.5.4 || ^16.0.0 || ^17.0.0",
     "react-linkify": "^1.0.0-alpha",
@@ -19,7 +18,7 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.0.0-0",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "babel-plugin-import": "^1.13.3",
