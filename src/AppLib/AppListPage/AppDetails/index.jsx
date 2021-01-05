@@ -81,12 +81,6 @@ class AppDetails extends React.Component {
       this.setState({ showDialog: false });
       if (VersionDialog) {
         VersionDialog(data);
-        // } else if (window.upgradeVersionDialog) {
-        //   window.upgradeVersionDialog({
-        //     projectId,
-        //     explainText,
-        //     hint,
-        //   });
       } else {
         Modal.error({
           title: hint || "安装失败",

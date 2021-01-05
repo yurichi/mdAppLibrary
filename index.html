@@ -9,14 +9,22 @@
     <div id="containerAppLib"></div>
     <script src="./src/index.js"></script>
     <script type="text/javascript">
-      window.MDLibrary({
-        //   VersionDialog: data => {
-        //     return initNetState(data);
-        //   },
-        MDAppLibraryId: "containerAppLib",
-        getUrl: "http://wwwapi.dev.mingdao.net/",
-        installUrl: "http://118.24.27.163:29288/",
-      });
+        const { md = {} } = window;
+    const { global = {} } = md;
+    const { Config = {}, Account = {} } = global;
+    const { AppFileServer = '' } = Config;
+    const { accountId = '', projects = [] } = Account;
+      window.MDLibrary &&
+        window.MDLibrary({
+          //   VersionDialog: data => {
+          //     return initNetState(data);
+          //   },
+          MDAppLibraryId: "containerAppLib",
+          getUrl: "http://wwwapi.dev.mingdao.net/",
+          installUrl: "http://118.24.27.163:29288/",
+          accountId,
+          projects,
+        });
     </script>
   </body>
 </html>

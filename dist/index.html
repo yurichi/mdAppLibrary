@@ -8,13 +8,31 @@
   <body>
     <div id="containerAppLib"></div>
     <script src="/src.a2b27638.js"></script>
-    <script>window.MDLibrary({
+    <script>
+var _window = window,
+    _window$md = _window.md,
+    md = _window$md === void 0 ? {} : _window$md;
+var _md$global = md.global,
+    global = _md$global === void 0 ? {} : _md$global;
+var _global$Config = global.Config,
+    Config = _global$Config === void 0 ? {} : _global$Config,
+    _global$Account = global.Account,
+    Account = _global$Account === void 0 ? {} : _global$Account;
+var _Config$AppFileServer = Config.AppFileServer,
+    AppFileServer = _Config$AppFileServer === void 0 ? '' : _Config$AppFileServer;
+var _Account$accountId = Account.accountId,
+    accountId = _Account$accountId === void 0 ? '' : _Account$accountId,
+    _Account$projects = Account.projects,
+    projects = _Account$projects === void 0 ? [] : _Account$projects;
+window.MDLibrary && window.MDLibrary({
   //   VersionDialog: data => {
   //     return initNetState(data);
   //   },
   MDAppLibraryId: "containerAppLib",
   getUrl: "http://wwwapi.dev.mingdao.net/",
-  installUrl: "http://118.24.27.163:29288/"
+  installUrl: "http://118.24.27.163:29288/",
+  accountId: accountId,
+  projects: projects
 });</script>
   </body>
 </html>

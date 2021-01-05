@@ -17,10 +17,12 @@ const AppListBox = styled.div`
       .normalImg {
         margin-left: 5px;
         display: inline-block;
+        margin-top: 10px;
       }
       .hoverImg {
         margin-left: 5px;
         display: none;
+        margin-top: 10px;
       }
       &:hover {
         .normalImg {
@@ -230,15 +232,9 @@ class AppList extends React.Component {
                       </h5>
                       <img
                         className="normalImg"
-                        style={{
-                          verticalAlign: "bottom",
-                        }}
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAYAAACgu+4kAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEKADAAQAAAABAAAADQAAAACP7QD7AAAAiUlEQVQoFWNgIAKUlJQ4lJaWJmBTyoRNEIfYfGyGkGIAyFwMQ0g1AMMQRqCzDvwHAhzOBgszMjIKABkGaGoSu7u7F4AMwKsZTRM6N5EcL8ANATrcgWwDgJoX9vT0JDDCjcPDAKUDYDjshymBaQbxSXYBsmaSDUDXTJIB2DSDDCAKFBQUgNIBVgAACHo5bVAUCxQAAAAASUVORK5CYII="
                       />
                       <img
-                        style={{
-                          verticalAlign: "bottom",
-                        }}
                         className="hoverImg"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAANCAYAAACgu+4kAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEKADAAQAAAABAAAADQAAAACP7QD7AAAAjklEQVQoFWNgIAJoTH/voD39fQI2pUzYBLGKMTLOx2YI8QaATMViCGkGYDGEEeisA0CT/2N1NlQQKCnAyMBggKLm///Eq5mCCxi1Z3zAqxlFEzoHaAjpXkA1xIF8A/7/Xwj0QgLQa4QBKB0wMzLuh6uEagbxSXcBkmbSDUDTTJoBWDSDDCAKKMx/L4BLIQC+kDRwk0xq7QAAAABJRU5ErkJggg=="
                       />

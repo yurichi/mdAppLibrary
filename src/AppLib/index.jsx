@@ -275,27 +275,20 @@ class AppLib extends React.Component {
 
 export default class MDAppLibrary extends React.Component {
   render() {
-    const { md = {} } = window;
-    const { global = {} } = md;
-    const { Account = {} } = global;
-    const params = {
-      accountId: Account.accountId || "",
-      projects: Account.projects || [], //网络
-    };
     return (
       <Router>
         <Switch>
           <Route
             path="/library"
             component={(data) => {
-              return <AppLib {...this.props} {...params} {...data} />;
+              return <AppLib {...this.props} {...data} />;
             }}
             title="模板库"
           />
           <Route
             path="/app/lib"
             component={(data) => {
-              return <AppLib {...this.props} {...params} {...data} />;
+              return <AppLib {...this.props} {...data} />;
             }}
             title="模板库"
           />
