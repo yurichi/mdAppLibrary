@@ -48,23 +48,10 @@ class AppListCon extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    // if (!!this.state.isPending) {
-    //   source.cancel("quxiao");
-    //   this.setState({
-    //     isPending: false,
-    //   });
-    // }
-  }
+  componentWillUnmount() {}
 
   // 获取分类下模板库模板列表
   getlibraryByCategory = (categoryId) => {
-    // if (this.state.isPending) {
-    //   source.cancel("quxiao");
-    //   this.setState({
-    //     isPending: false,
-    //   });
-    // }
     this.setState({
       ...this.state,
       loading: true,
@@ -73,31 +60,7 @@ class AppListCon extends React.Component {
     });
     if (!categoryId) {
       // 获取模板库分类首页信息
-      // axios
-      //   .post(
-      //     urlPrefix("appManagement/getAppsCategoryInfo"),
-      //     {},
-      //     {
-      //       cancelToken: source.token,
-      //     }
-      //   )
-      //   .then((res) => {
-      //     const { data } = res.data;
-      //     if (data) {
-      //       this.setState({
-      //         ...this.state,
-      //         data: data,
-      //         loading: false,
-      //         isPending: false,
-      //       });
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     // this.setState({
-      //     //   isPending: false,
-      //     // });
-      //   });
-      getAppsCategoryInfo({}).then((res) => {
+      getAppsCategoryInfo(this.props.getUrl, {}).then((res) => {
         const { data } = res.data;
         if (data) {
           this.setState({
@@ -109,31 +72,7 @@ class AppListCon extends React.Component {
         }
       });
     } else {
-      //   axios
-      //     .post(
-      //       urlPrefix("appManagement/getAppsLibraryInfo"),
-      //       { categoryId },
-      //       {
-      //         cancelToken: source.token,
-      //       }
-      //     )
-      //     .then((res) => {
-      //       const { data } = res.data;
-      //       if (data) {
-      //         this.setState({
-      //           dataByCategory: data,
-      //           loading: false,
-      //           isPending: false,
-      //         });
-      //       }
-      //     })
-      //     .catch((error) => {
-      //       // this.setState({
-      //       //   isPending: false,
-      //       // });
-      //     });
-      // }
-      getAppsLibraryInfo({ categoryId }).then((res) => {
+      getAppsLibraryInfo(this.props.getUrl, { categoryId }).then((res) => {
         const { data } = res.data;
         if (data) {
           this.setState({
@@ -161,7 +100,7 @@ class AppListCon extends React.Component {
       loading: true,
       dataBysearch: [],
     });
-    searchAppLibrary({
+    searchAppLibrary(this.props.getUrl, {
       keyword: value,
     }).then((res) => {
       if (res) {

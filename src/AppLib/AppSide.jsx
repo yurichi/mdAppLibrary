@@ -10,7 +10,7 @@ const AppCategories = styled.div`
     }
     .appCategories {
       height: 100%;
-      padding: 22px 0!important;
+      padding: 22px 0 !important;
       box-sizing: border-box;
       a {
         &:hover {
@@ -53,7 +53,7 @@ export default class AppSide extends Component {
   }
 
   componentDidMount() {
-    getAppsCategoryInfo({ isCategory: true }).then((res) => {
+    getAppsCategoryInfo(this.props.getUrl, { isCategory: true }).then((res) => {
       if (res) {
         const { data = [] } = res.data;
         this.setState({

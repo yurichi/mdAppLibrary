@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="containerAppLib"></div>
     <script src="./src/index.js"></script>
-</body>
+    <script type="text/javascript">
+      window.MDLibrary({
+        //   VersionDialog: data => {
+        //     return initNetState(data);
+        //   },
+        MDAppLibraryId: "containerAppLib",
+        getUrl: "http://wwwapi.dev.mingdao.net/",
+        installUrl: "http://118.24.27.163:29288/",
+      });
+    </script>
+  </body>
 </html>

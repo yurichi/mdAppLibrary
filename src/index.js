@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import MDAppLibrary from "./AppLib/index";
-// import "@babel/polyfill";
 
-ReactDOM.render(<MDAppLibrary />, document.getElementById("containerAppLib"));
+window.MDLibrary = (obj) => {
+  const { MDAppLibraryId = "" } = obj;
+  ReactDOM.render(
+    <MDAppLibrary {...obj} />,
+    document.getElementById(MDAppLibraryId)
+  );
+};

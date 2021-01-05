@@ -60,7 +60,7 @@ class AppDetails extends React.Component {
   };
 
   fetch = () => {
-    getAppLibraryDetail({
+    getAppLibraryDetail(this.props.getUrl, {
       libraryId: this.props.libraryId,
     }).then((res) => {
       if (res.length <= 0) {
@@ -76,17 +76,17 @@ class AppDetails extends React.Component {
   };
 
   installAppFn = (projectId, libraryId) => {
-    const { isMobile } = this.props;
+    const { isMobile, VersionDialog = null } = this.props;
     const cancelFn = (explainText, hint, data) => {
       this.setState({ showDialog: false });
-      if (window.VersionDialog) {
-        window.VersionDialog(data);
-      } else if (window.upgradeVersionDialog) {
-        window.upgradeVersionDialog({
-          projectId,
-          explainText,
-          hint,
-        });
+      if (VersionDialog) {
+        VersionDialog(data);
+        // } else if (window.upgradeVersionDialog) {
+        //   window.upgradeVersionDialog({
+        //     projectId,
+        //     explainText,
+        //     hint,
+        //   });
       } else {
         Modal.error({
           title: hint || "安装失败",
@@ -94,7 +94,7 @@ class AppDetails extends React.Component {
         });
       }
     };
-    getLibraryToken({
+    getLibraryToken(this.props.getUrl, {
       libraryId: libraryId,
     })
       .then(
@@ -107,7 +107,7 @@ class AppDetails extends React.Component {
               content: "",
             });
           }
-          installApp({
+          installApp(this.props.installUrl, {
             fileUrl,
             projectId: projectId,
             id: libraryId,
