@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AppSide from "./AppSide";
 import AppCon from "./AppListPage";
 import { isEqual } from "lodash";
-import { GetRequest } from "../common/util";
+import { GetRequest, browserIsMobile } from "../common/util";
 import styled from "styled-components";
 const AppConBox = styled.div`
    {
@@ -254,20 +254,17 @@ class AppLib extends React.Component {
   };
 
   render() {
+    const param = {
+      ...this.props,
+      ...this.state,
+      isMobile: browserIsMobile(),
+    };
     return (
       <AppConBox className="appCon">
         <div className="appSide">
-          <AppSide
-            {...this.props}
-            {...this.state}
-            setCategoryName={this.setCategoryName}
-          />
+          <AppSide {...param} setCategoryName={this.setCategoryName} />
         </div>
-        <AppCon
-          {...this.props}
-          {...this.state}
-          categoryName={this.state.categoryName}
-        />
+        <AppCon {...param} categoryName={this.state.categoryName} />
       </AppConBox>
     );
   }

@@ -76,11 +76,15 @@ class AppDetails extends React.Component {
   };
 
   installAppFn = (projectId, libraryId) => {
-    const { isMobile, VersionDialog = null } = this.props;
-    const cancelFn = (explainText, hint, data) => {
+    const { isMobile, upgradeVersionDialog = null } = this.props;
+    const cancelFn = (hint, explainText) => {
       this.setState({ showDialog: false });
-      if (VersionDialog) {
-        VersionDialog(data);
+      if (upgradeVersionDialog) {
+        upgradeVersionDialog({
+          projectId,
+          explainText,
+          hint,
+        });
       } else {
         Modal.error({
           title: hint || "安装失败",
@@ -109,32 +113,30 @@ class AppDetails extends React.Component {
           })
             .then(
               (res) => {
-                const { status = null, data = {} } = res;
-                const { exception = "", state = null } = data;
-                if (status === 402 && state === 13) {
-                  cancelFn(
-                    "版本授权已过期，请续费后使用",
-                    exception || "授权已过期",
-                    data.data
-                  );
-                  return;
-                } else if (exception) {
-                  cancelFn("", exception);
-                  return;
-                }
+                const { status = null, data } = res;
                 if (data) {
                   const { appId = "", errorCode = "" } = data;
-                  if (!appId) {
-                    //错误码 1=应用数量超标，6=工作表数量超标
-                    if (errorCode === 1) {
-                      cancelFn("请付费升级以扩展更多用量", "应用数量超标");
-                      return;
+                  //错误码 1=应用数量超标，6=工作表数量超标,7=网络已到期
+                  if ([1, 6, 7].includes(errorCode) || !appId) {
+                    switch (errorCode) {
+                      case 1:
+                        return cancelFn(
+                          "应用数量超标",
+                          "应用数量超标，请付费升级以扩展更多用量"
+                        );
+                      case 6:
+                        return cancelFn(
+                          "工作表数量超标",
+                          "工作表数量超标，请付费升级以扩展更多用量"
+                        );
+                      case 7:
+                        return cancelFn(
+                          "版本授权已过期",
+                          "版本授权已过期，请续费后使用"
+                        );
+                      default:
+                        return cancelFn("安装失败", "安装失败，请稍后重试");
                     }
-                    if (errorCode === 6) {
-                      cancelFn("请付费升级以扩展更多用量", "工作表数量超标");
-                      return;
-                    }
-                    this.setState({ showDialog: false });
                   }
                   setTimeout(() => {
                     let url = isMobile
@@ -172,7 +174,7 @@ class AppDetails extends React.Component {
       if (!accountId) {
         const categoryIdStr = !categoryId ? "" : `categoryId=${categoryId}&`;
         let url =
-          "/login.htm?ReturnUrl=" +
+          (this.props.unKnownUrl || "/login.htm?ReturnUrl=") +
           encodeURIComponent(
             `${window.location.origin}/app/lib?${categoryIdStr}libraryId=${libraryId}`
           );
@@ -232,6 +234,7 @@ class AppDetails extends React.Component {
 
   render() {
     const { data = [] } = this.state;
+    const { isMobile } = this.props;
     if (data.length <= 0) {
       return (
         <div className="mTop100">
@@ -239,28 +242,6 @@ class AppDetails extends React.Component {
         </div>
       );
     }
-    const isMobile = () => {
-      var sUserAgent = navigator.userAgent.toLowerCase();
-      var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
-      var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
-      var bIsMidp = sUserAgent.match(/midp/i) == "midp";
-      var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
-      var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
-      var bIsAndroid = sUserAgent.match(/android/i) == "android";
-      var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
-      var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-
-      return (
-        bIsIpad ||
-        bIsIphoneOs ||
-        bIsMidp ||
-        bIsUc7 ||
-        bIsUc ||
-        bIsAndroid ||
-        bIsCE ||
-        bIsWM
-      );
-    };
     const {
       name,
       intro,
@@ -350,6 +331,7 @@ class AppDetails extends React.Component {
             <Linkify properties={{ target: "_blank" }}>{description}</Linkify>
           </p>
           <Slideshow
+            isMobile={isMobile}
             data={
               !isMobile || !mobilePictures || mobilePictures.length <= 0
                 ? pictures
@@ -383,8 +365,7 @@ class AppDetails extends React.Component {
           <AddDialog
             {...this.props}
             visible={this.state.showDialog}
-            isMobile={this.props.isMobile}
-            // onCancel={() => this.setState({ showDialog: false })}
+            onCancel={() => this.setState({ showDialog: false })}
             libraryId={this.props.libraryId}
             projectId={this.props.projectId}
             installAppFn={this.installAppFn}
