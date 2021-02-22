@@ -94,6 +94,7 @@ class AppDetails extends React.Component {
     };
     getLibraryToken(this.props.getUrl, {
       libraryId: libraryId,
+      projectId: projectId,
     })
       .then(
         (o) => {
