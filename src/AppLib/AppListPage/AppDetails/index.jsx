@@ -122,18 +122,18 @@ class AppDetails extends React.Component {
                     switch (errorCode) {
                       case 1:
                         return cancelFn(
-                          "应用数量超标",
-                          "应用数量超标，请付费升级以扩展更多用量"
+                          "当前网络应用数量超标",
+                          ""
                         );
                       case 6:
                         return cancelFn(
-                          "工作表数量超标",
-                          "工作表数量超标，请付费升级以扩展更多用量"
+                          "当前网络工作表数量超标",
+                          ""
                         );
                       case 7:
                         return cancelFn(
                           "版本授权已过期",
-                          "版本授权已过期，请续费后使用"
+                          ""
                         );
                       default:
                         return cancelFn("安装失败", "安装失败，请稍后重试");

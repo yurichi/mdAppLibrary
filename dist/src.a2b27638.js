@@ -113176,13 +113176,13 @@ var AppDetails = /*#__PURE__*/function (_React$Component) {
             if ([1, 6, 7].includes(errorCode) || !appId) {
               switch (errorCode) {
                 case 1:
-                  return cancelFn("应用数量超标", "应用数量超标，请付费升级以扩展更多用量");
+                  return cancelFn("当前网络应用数量超标", "");
 
                 case 6:
-                  return cancelFn("工作表数量超标", "工作表数量超标，请付费升级以扩展更多用量");
+                  return cancelFn("当前网络工作表数量超标", "");
 
                 case 7:
-                  return cancelFn("版本授权已过期", "版本授权已过期，请续费后使用");
+                  return cancelFn("版本授权已过期", "");
 
                 default:
                   return cancelFn("安装失败", "安装失败，请稍后重试");
@@ -114450,7 +114450,7 @@ window.MDLibrary = function (obj) {
 
   _reactDom.default.render( /*#__PURE__*/_react.default.createElement(_index.default, obj), document.getElementById(MDAppLibraryId));
 };
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./AppLib/index":"src/AppLib/index.jsx"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./AppLib/index":"src/AppLib/index.jsx"}],"../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -114478,7 +114478,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57434" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59768" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -114654,5 +114654,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
+},{}]},{},["../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
 //# sourceMappingURL=/src.a2b27638.js.map
