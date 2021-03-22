@@ -1,0 +1,5 @@
+### 以下表示忽略该文件夹，不提交到Git ###
+.vscode
+.cache
+node_modules
+dist

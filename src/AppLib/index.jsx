@@ -276,14 +276,14 @@ export default class MDAppLibrary extends React.Component {
       <Router>
         <Switch>
           <Route
-            path="/library"
+            path="*/library"
             component={(data) => {
               return <AppLib {...this.props} {...data} />;
             }}
             title="模板库"
           />
           <Route
-            path="/app/lib"
+            path="*/app/lib"
             component={(data) => {
               return <AppLib {...this.props} {...data} />;
             }}

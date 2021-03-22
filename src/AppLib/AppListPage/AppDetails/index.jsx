@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import VideoCon from "../../../components/VideoCon";
 import SvgIcon from "/src/components/SvgIcon";
 import { Modal } from "antd";
+import { GetPath } from "../../../common/util";
+
 class AppDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -65,6 +67,7 @@ class AppDetails extends React.Component {
     }).then((res) => {
       if (res.length <= 0) {
         let url = !this.props.accountId ? "/library" : "/app/lib";
+        url = GetPath() + url;
         window.location.assign(url);
       } else {
         this.setState({
@@ -121,20 +124,11 @@ class AppDetails extends React.Component {
                   if ([1, 6, 7].includes(errorCode) || !appId) {
                     switch (errorCode) {
                       case 1:
-                        return cancelFn(
-                          "当前网络应用数量超标",
-                          ""
-                        );
+                        return cancelFn("当前网络应用数量超标", "");
                       case 6:
-                        return cancelFn(
-                          "当前网络工作表数量超标",
-                          ""
-                        );
+                        return cancelFn("当前网络工作表数量超标", "");
                       case 7:
-                        return cancelFn(
-                          "版本授权已过期",
-                          ""
-                        );
+                        return cancelFn("版本授权已过期", "");
                       default:
                         return cancelFn("安装失败", "安装失败，请稍后重试");
                     }
@@ -143,6 +137,7 @@ class AppDetails extends React.Component {
                     let url = isMobile
                       ? `/mobile/app/${appId}`
                       : `/app/${appId}`;
+                    url = GetPath() + url;
                     window.location.assign(url);
                   }, 3000);
                 } else {
@@ -177,9 +172,11 @@ class AppDetails extends React.Component {
         let url =
           (this.props.unKnownUrl || "/login.htm?ReturnUrl=") +
           encodeURIComponent(
-            `${window.location.origin}/app/lib?${categoryIdStr}libraryId=${libraryId}`
+            `${
+              window.location.origin
+            }${GetPath()}/app/lib?${categoryIdStr}libraryId=${libraryId}`
           );
-        window.location.assign(url);
+        window.location.assign(GetPath() + url);
       } else {
         if (!projects.find((item) => !item.cannotCreateApp)) {
           Modal.info({
@@ -219,6 +216,7 @@ class AppDetails extends React.Component {
 
   renderTag = (categoryInfo) => {
     let url = !this.props.accountId ? "/library" : "/app/lib";
+    url = GetPath() + url;
     return (
       <React.Fragment>
         {map(categoryInfo, ({ categoryId, name }) => (

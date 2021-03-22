@@ -11,7 +11,17 @@ export const GetRequest = () => {
   return theRequest;
 };
 
-  /** 判断当前设备是否为移动端 */
+/** 获取子路径 */
+export const GetPath = () => {
+  const pathname = window.location.pathname;
+  let a =
+  pathname.indexOf("/library") >= 0
+      ? pathname.indexOf("/library")
+      : pathname.indexOf("/app/lib");
+  return pathname.slice(0, a);
+};
+
+/** 判断当前设备是否为移动端 */
 export const browserIsMobile = () => {
   var sUserAgent = navigator.userAgent.toLowerCase();
   var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";

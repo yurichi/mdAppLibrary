@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import cx from "classnames";
 import Load from "/src/components/Load";
 import styled from "styled-components";
+import { GetPath } from "../../../common/util";
 const AppListBox = styled.div`
   &.appListBox {
     width: 100%;
@@ -170,7 +171,8 @@ class AppList extends React.Component {
       projectId,
       accountId = "",
     } = this.props;
-    const url = !accountId ? "/library" : "/app/lib";
+    let url = !accountId ? "/library" : "/app/lib";
+    url = GetPath() + url;
     return (
       <div className="mTop28 listBox">
         {map(libraries, (item, i) => {
@@ -207,8 +209,8 @@ class AppList extends React.Component {
     } = this.props;
     const thisCategoryId = categoryId;
     const projectIdtr = !projectId ? "" : `projectId=${projectId}&`;
-    const url = !accountId ? "/library" : "/app/lib";
-
+    let url = !accountId ? "/library" : "/app/lib";
+    url = GetPath() + url;
     if (loading) {
       return <Load className="mTop100" />;
     } else {

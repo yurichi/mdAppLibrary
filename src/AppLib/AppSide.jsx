@@ -3,6 +3,7 @@ import cx from "classnames";
 import { Link } from "react-router-dom";
 import { getAppsCategoryInfo } from "/lib/api";
 import styled from "styled-components";
+import { GetPath } from "../common/util";
 const AppCategories = styled.div`
    {
     ul {
@@ -85,7 +86,8 @@ export default class AppSide extends Component {
     const { projectId = "", accountId = "", categoryId = "" } = this.props;
     const projectIdtr = !projectId ? "" : `projectId=${projectId}&`;
     const { list = [] } = this.state;
-    const url = !accountId ? "/library" : "/app/lib";
+    let url = !accountId ? "/library" : "/app/lib";
+    url = GetPath() + url;
     if (!list || list.length <= 0) return "";
     const ptr = !projectId ? "" : `?projectId=${projectId}`;
     return (
